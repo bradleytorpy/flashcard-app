@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  db:
+    env_file:
+      - ./.env
+    image: postgres:17
+    container_name: postgres-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: flashcard_user
+      POSTGRES_PASSWORD: flashcard_pass
+      POSTGRES_DB: flashcard_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    env_file:
+      - ./.env
+    build: ./backend
+    container_name: flashcard-backend
+    restart: always
+    ports:
+      - "${BACKEND_PORT}:5000"
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+    command: npm run dev
+
+  prisma-studio:
+    env_file:
+      - ./.env
+    build: ./backend
+    command: npx prisma studio --port 5555 --hostname 0.0.0.0
+    ports:
+      - "5555:5555"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
