@@ -15,6 +15,10 @@ app.get("/api/test", (req, res) => {
   res.send("Hello! This is a test endpoint.");
 });
 
+// Flashcards route
+const flashcardsRouter = require('./routes/flashcards');
+app.use('/api/flashcards', flashcardsRouter);
+
 // Start the server
 const PORT = process.env.BACKEND_PORT || 5000;
 

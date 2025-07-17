@@ -1,0 +1,22 @@
+# Development Dockerfile
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install dependencies
+COPY package.json package-lock.json* ./
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Generate Prisma client
+RUN npx prisma generate
+
+# Make init script executable
+RUN chmod +x init-db.sh
+
+EXPOSE 5000
+
+# Use a startup script to handle database initialization
+CMD ["sh", "-c", "./init-db.sh && npm run dev"] 
