@@ -23,8 +23,10 @@ model user {
 
 model flashcard {
   id          Int      @id @default(autoincrement())
-  front       String
-  back        String
+  kanji       String
+  reading     String
+  meaning     String
+  level       String  
   createdAt   DateTime @default(now())
   deckId      Int?
   decks       deck[]    @relation("DeckFlashcards")

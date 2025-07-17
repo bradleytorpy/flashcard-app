@@ -11,8 +11,10 @@ CREATE TABLE "user" (
 -- CreateTable
 CREATE TABLE "flashcard" (
     "id" SERIAL NOT NULL,
-    "front" TEXT NOT NULL,
-    "back" TEXT NOT NULL,
+    "kanji" TEXT NOT NULL,
+    "reading" TEXT NOT NULL,
+    "meaning" TEXT NOT NULL,
+    "level" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deckId" INTEGER,
 

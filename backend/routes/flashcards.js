@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     res.json(flashcards);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Failed to retrieve flashcards' });
+    res.status(500).json({ error: 'Failed to retrieve flashcards', details: error.message });
   }
 });
 
