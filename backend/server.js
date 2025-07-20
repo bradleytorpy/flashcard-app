@@ -19,6 +19,10 @@ app.get("/api/test", (req, res) => {
 const flashcardsRouter = require('./routes/flashcards');
 app.use('/api/flashcards', flashcardsRouter);
 
+// Decks route
+const decksRouter = require('./routes/decks');
+app.use('/api/decks', decksRouter);
+
 // Start the server
 const PORT = process.env.BACKEND_PORT || 5000;
 
