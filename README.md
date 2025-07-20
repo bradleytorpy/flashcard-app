@@ -23,6 +23,7 @@ docker compose -f docker-compose.prod.yml up -d
 
 ## Services
 
+- **Frontend**: React (Typescript) (port 3000)
 - **Backend**: Node.js Express API (port 5000)
 - **Database**: PostgreSQL 17 (port 5432)
 - **Prisma Studio**: Database GUI (port 5555) - development only
@@ -42,6 +43,7 @@ npm run db:generate    # Generate Prisma client
 npm run db:migrate     # Apply migrations
 npm run db:studio      # Open Prisma Studio
 npm run db:reset       # Reset database
+npm run db:seed-kanji  # Seeds the initial Kanji flashcards
 ```
 
 ## Environment Variables
@@ -51,11 +53,13 @@ Create a `.env` file in the root directory:
 ```env
 DATABASE_URL=postgres://flashcard_user:flashcard_pass@db:5432/flashcard_db
 BACKEND_PORT=5000
+FRONTEND_PORT=3000
+REACT_APP_API_URL=http://localhost:5000
 ```
 
 ## API Endpoints
 
-- `GET /api/test` - Health check
+- `GET /api/health` - Health check
 - `GET /api/flashcards` - Get all flashcards
 
 ## Architecture
