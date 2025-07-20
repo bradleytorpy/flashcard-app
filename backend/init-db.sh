@@ -2,5 +2,6 @@
 
 echo "Waiting for database to be ready..."
 npx prisma migrate deploy
+npm run db:seed-kanji
 
-echo "Database migrations completed!" 
+echo "Database migrations and seeding completed!" 
